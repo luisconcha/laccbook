@@ -1,15 +1,16 @@
 {
-    "name": "luisconcha/laccbook",
-    "description": "",
-    "authors": [
-        {
-            "name": "Luis Alberto Concha Curay",
-            "email": "luisconchacuray@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "LaccBook\\": ""
-        }
+  "name": "luisconcha/laccbook",
+  "description": "",
+  "authors": [
+    {
+      "name": "Luis Alberto Concha Curay",
+      "email": "luisconchacuray@gmail.com"
     }
+  ],
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "LaccBook\\": ""
+    }
+  }
 }
