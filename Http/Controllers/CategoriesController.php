@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use LACC\Http\Controllers\Controller;
 use LaccBook\Http\Requests\CategoryRequest;
 use LaccBook\Repositories\CategoryRepository;
-use LACC\Services\CategoryService;
+use LaccBook\Services\CategoryService;
 
 class CategoriesController extends Controller
 {

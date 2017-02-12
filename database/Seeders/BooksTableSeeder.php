@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-use LACC\Models\Book;
+use LaccBook\Models\Book;
 
 class BooksTableSeeder extends Seeder
 {

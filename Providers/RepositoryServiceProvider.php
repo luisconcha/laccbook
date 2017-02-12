@@ -24,6 +24,10 @@ class RepositoryServiceProvider extends ServiceProvider
             \LaccBook\Repositories\CategoryRepository::class,
             \LaccBook\Repositories\CategoryRepositoryEloquent::class
         );
+        $this->app->bind(
+            \LaccBook\Repositories\BookRepository::class,
+            \LaccBook\Repositories\BookRepositoryEloquent::class
+        );
     }
 
     /**

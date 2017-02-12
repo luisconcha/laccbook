@@ -4,7 +4,7 @@ namespace LaccBook\Http\Controllers\Trashs;
 use Illuminate\Http\Request;
 use LACC\Http\Controllers\Controller;
 use LaccBook\Repositories\CategoryRepository;
-use LACC\Services\CategoryService;
+use LaccBook\Services\CategoryService;
 
 class CategoriesTrashController extends Controller
 {

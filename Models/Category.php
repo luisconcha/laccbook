@@ -3,7 +3,7 @@ namespace LaccBook\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use LACC\Models\Book;
+use LaccBook\Models\Book;
 
 class Category extends Model
 {
