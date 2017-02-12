@@ -12,7 +12,7 @@ use LaccBook\Services\BookService;
 use LaccBook\Services\CategoryService;
 use LACC\Services\UserService;
 
-class bookscontroller extends Controller
+class Bookscontroller extends Controller
 {
     private $with = [ 'author' ];
 
