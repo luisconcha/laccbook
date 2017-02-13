@@ -2,7 +2,7 @@
 namespace LaccBook\Http\Controllers\Trashs;
 
 use Illuminate\Http\Request;
-use LACC\Http\Controllers\Controller;
+use LaccBook\Http\Controllers\Controller;
 use LaccBook\Repositories\CategoryRepository;
 use LaccBook\Services\CategoryService;
 

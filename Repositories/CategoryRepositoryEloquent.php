@@ -7,7 +7,6 @@ use LACC\Criteria\CriteriaTrashedTrait;
 use LaccBook\Models\Category;
 use LACC\Repositories\Traits\BaseRepositoryTrait;
 use LACC\Repositories\Traits\RepositoryRestoreTrait;
-use LaccBook\Repositories\CategoryRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Prettus\Repository\Eloquent\BaseRepository;
 

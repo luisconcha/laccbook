@@ -2,7 +2,6 @@
 namespace LaccBook\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LACC\Http\Controllers\Controller;
 use LaccBook\Http\Requests\CategoryRequest;
 use LaccBook\Repositories\CategoryRepository;
 use LaccBook\Services\CategoryService;

@@ -3,7 +3,6 @@
 namespace LaccBook\Http\Controllers;
 
 use Illuminate\Http\Request;
-use LACC\Http\Controllers\Controller;
 use LaccBook\Http\Requests\BookRequest;
 use LaccBook\Repositories\BookRepository;
 use LaccBook\Repositories\CategoryRepository;
