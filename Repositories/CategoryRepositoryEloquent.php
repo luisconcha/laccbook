@@ -47,7 +47,7 @@ class CategoryRepositoryEloquent extends BaseRepository implements CategoryRepos
         $collection = $this->all();
         return $collection->pluck( $column, $key );
     }
-    
+
 
     /**
      * Boot up the repository, pushing criteria

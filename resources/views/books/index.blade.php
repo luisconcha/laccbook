@@ -42,7 +42,7 @@
                         <td>{{ $book->id }}</td>
                         <td>{{ $book->title }}</td>
                         <td>{{ $book->price }}</td>
-                        <td>{{ $book->author->name }}</td>
+                        <td>{!!  isset($book->author->name) ? $book->author->name : "<span class='label label-danger'>The author has been deleted.</span>" !!}</td>
                         <td>{{ $book->categories->implode('name_trashed',',') }}</td>
                         <td>
                             <a href="{{route('books.edit',['id'=>$book->id])}}"

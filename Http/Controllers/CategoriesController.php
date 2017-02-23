@@ -28,9 +28,11 @@ class CategoriesController extends Controller
         $this->categoryService    = $categoryService;
     }
 
-        /**
-         * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-         */
+		/**
+		 * @param Request $request
+		 *
+		 * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+		 */
 		public function index(Request $request)
 		{
             $search     = $request->get( 'search' );

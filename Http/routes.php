@@ -1,6 +1,7 @@
 <?php
 
-Route::group( [ 'middleware' => 'auth' ], function () {
+Route::group( [ 'middleware' => ['auth', config('laccuser.middleware.isVerified') ] ], function () {
+
     //Categories
     Route::resource( '/categories', 'CategoriesController', [ 'except' => [ 'show' ] ] );
     Route::get( 'categories/{id}', [ 'as' => 'categories.destroy', 'uses' => 'CategoriesController@destroy' ] );

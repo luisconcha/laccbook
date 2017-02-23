@@ -5,7 +5,7 @@ namespace LaccBook\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use LaccBook\Models\Book;
 use LaccBook\Repositories\BookRepository;
-use LACC\Repositories\UserRepository;
+use LaccUser\Repositories\UserRepository;
 
 class BookRequest extends FormRequest
 {

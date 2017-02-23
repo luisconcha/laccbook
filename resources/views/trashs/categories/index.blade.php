@@ -45,13 +45,14 @@ Return to the active categories</a>
                         <td>{{ $category->updated_at }}</td>
                         <td>{{ $category->deleted_at }}</td>
                         <td>
-                            <a href="{{route('trashed.categories.restore',['id'=>$category->id])}}"
+                            <a href="#"
                                class="btn btn-danger btn-outline btn-xs"
                                onclick="event.preventDefault();document.getElementById('restore').submit();">
                                 <strong>Restore</strong>
                             </a>
-                            {!! Form::open(['route' => ['trashed.categories.restore', 'book' =>$category->id],'method'=>'GET', 'id' => 'restore', 'style' => 'display:none']) !!}
+                            {!! Form::open(['route' => ['trashed.categories.restore', 'id' =>$category->id],'method'=>'GET', 'id' => 'restore', 'style' => 'display:none']) !!}
                             {!! Form::hidden('redirect_to', URL::previous()) !!}
+                            {!! Form::hidden('_token', csrf_token()) !!}
                             {!! Form::close() !!}
                         </td>
                     </tr>

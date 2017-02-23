@@ -41,6 +41,7 @@ class CategoriesTrashController extends Controller
 
     public function update( Request $request, $id )
     {
+    		echo '<pre>'.__FILE__.': '.__LINE__.'<hr>';var_dump($id);echo'<hr></pre>';exit;
         $data = $request->all();
         $this->categoryRepository->onlyTrashed();
         $this->categoryRepository->restore( $id );
