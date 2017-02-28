@@ -5,8 +5,6 @@ namespace LaccBook\Models;
 use Collective\Html\Eloquent\FormAccessible;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use LaccUser\Models\User;
-use LaccBook\Models\Category;
 
 class Book extends Model
 {
