@@ -1,5 +1,4 @@
 <?php
-
 namespace LaccBook\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
@@ -14,9 +13,9 @@ class BookRequest extends FormRequest
      */
     private $bookRepository;
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct( BookRepository $bookRepository )
     {
-         $this->bookRepository = $bookRepository;
+        $this->bookRepository = $bookRepository;
     }
 
     /**
@@ -26,19 +25,28 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
-        $idUser = \Auth::user()->id;
-        $idBook = (int) $this->route('book');
-        $book   = $this->bookRepository->findWhere([
-            'id'        => $idBook,
-            'author_id' => $idUser
-        ]);
-
-
+        /**
+         * $idUser = \Auth::user()->id;
+         * $idBook = (int)$this->route( 'book' );
+         * $book   = $this->bookRepository->findWhere( [
+         * 'id'        => $idBook,
+         * 'author_id' => $idUser,
+         * ] );
+         * //$idBook == 0 NOVO REGISTRO
+         * if ( count( $book ) > 0 || $idBook == 0 ) {
+         * return true;
+         * }
+         *
+         * return false;
+         **/
+        $idBook = (int)$this->route( 'book' );
         //$idBook == 0 NOVO REGISTRO
-        if( count($book) > 0 || $idBook == 0)
+        if ( $idBook == 0 ) {
             return true;
+        }
+        $book = $this->bookRepository->find( $idBook );
 
-        return false;
+        return \Gate::allows( 'update-book', $book );
 
     }
 
@@ -49,15 +57,15 @@ class BookRequest extends FormRequest
      */
     public function rules()
     {
-        $idBook = ($this->route('book')) ? $this->route('book') : null;
+        $idBook = ( $this->route( 'book' ) ) ? $this->route( 'book' ) : null;
 
         return [
-            'title'        => "required|max:200|unique:books,title,$idBook",
-            'subtitle'     => 'required|max:250',
-            'author_id'    => 'required',
-            'price'        => 'required|numeric|regex:/^\d*(\.\d{2})?$/',
-            'categories.*' => 'exists:categories,id',
-            'categories'   => 'required|array',
+          'title'        => "required|max:200|unique:books,title,$idBook",
+          'subtitle'     => 'required|max:250',
+          'author_id'    => 'required',
+          'price'        => 'required|numeric|regex:/^\d*(\.\d{2})?$/',
+          'categories.*' => 'exists:categories,id',
+          'categories'   => 'required|array',
         ];
     }
 
@@ -72,17 +80,15 @@ class BookRequest extends FormRequest
     {
         $result     = [];
         $categories = $this->get( 'categories', [] );
-        $count      =  count( $categories );
-        if( is_array( $categories ) && $count > 0){
-            foreach ( range( 0, $count -1 ) as $value ){
-                $field = \Lang::get('validation.attributes.categories_*', [
-                     'num' => $value + 1
-                ]);
-
-                $message = \Lang::get( 'validation.exists', [
-                    'attribute' => $field
+        $count      = count( $categories );
+        if ( is_array( $categories ) && $count > 0 ) {
+            foreach ( range( 0, $count - 1 ) as $value ) {
+                $field                                = \Lang::get( 'validation.attributes.categories_*', [
+                  'num' => $value + 1,
                 ] );
-
+                $message                              = \Lang::get( 'validation.exists', [
+                  'attribute' => $field,
+                ] );
                 $result[ "categories.$value.exists" ] = $message;
             }
         }
