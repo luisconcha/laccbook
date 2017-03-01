@@ -9,7 +9,7 @@
         <h1>Edit book: <strong><b>{{ $book->title }}</b></strong></h1>
 
         @include('errors._check')
-
+        
         {!! Form::model($book,['route'=>['books.update','id'=>$book->id],'method'=>'put']) !!}
 
         @include('laccbook::books._form')
