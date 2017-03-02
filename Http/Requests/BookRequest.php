@@ -25,28 +25,16 @@ class BookRequest extends FormRequest
      */
     public function authorize()
     {
-        /**
-         * $idUser = \Auth::user()->id;
-         * $idBook = (int)$this->route( 'book' );
-         * $book   = $this->bookRepository->findWhere( [
-         * 'id'        => $idBook,
-         * 'author_id' => $idUser,
-         * ] );
-         * //$idBook == 0 NOVO REGISTRO
-         * if ( count( $book ) > 0 || $idBook == 0 ) {
-         * return true;
-         * }
-         *
-         * return false;
-         **/
         $idBook = (int)$this->route( 'book' );
         //$idBook == 0 NOVO REGISTRO
         if ( $idBook == 0 ) {
             return true;
         }
         $book = $this->bookRepository->find( $idBook );
+        $user = \Auth::user();
 
-        return \Gate::allows( 'update-book', $book );
+        //Autorização baseada em modelo, seed BookPolice funciton update (ability)
+        return $user->can( 'update', $book );
 
     }
 

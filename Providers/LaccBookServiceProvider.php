@@ -1,5 +1,4 @@
 <?php
-
 namespace LaccBook\Providers;
 
 use Illuminate\Support\ServiceProvider;
@@ -33,8 +32,9 @@ class LaccBookServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(RouteServiceProvider::class);
-        $this->app->register(RepositoryServiceProvider::class);
+        $this->app->register( RouteServiceProvider::class );
+        $this->app->register( RepositoryServiceProvider::class );
+        $this->app->register( AuthServiceProvider::class );
     }
 
     /**
@@ -44,11 +44,11 @@ class LaccBookServiceProvider extends ServiceProvider
      */
     protected function registerConfig()
     {
-        $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('laccbook.php'),
-        ], 'config');
+        $this->publishes( [
+          __DIR__ . '/../Config/config.php' => config_path( 'laccbook.php' ),
+        ], 'config' );
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'laccbook'
+          __DIR__ . '/../Config/config.php', 'laccbook'
         );
     }
 
@@ -59,17 +59,14 @@ class LaccBookServiceProvider extends ServiceProvider
      */
     public function registerViews()
     {
-        $viewPath = base_path('resources/views/modules/laccbook');
-
-        $sourcePath = __DIR__.'/../resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
+        $viewPath = base_path( 'resources/views/modules/laccbook' );
+        $sourcePath = __DIR__ . '/../resources/views';
+        $this->publishes( [
+          $sourcePath => $viewPath,
+        ] );
+        $this->loadViewsFrom( array_merge( array_map( function ( $path ) {
             return $path . '/modules/laccbook';
-        }, \Config::get('view.paths')), [$sourcePath]), 'laccbook');
+        }, \Config::get( 'view.paths' ) ), [ $sourcePath ] ), 'laccbook' );
     }
 
     /**
@@ -79,12 +76,11 @@ class LaccBookServiceProvider extends ServiceProvider
      */
     public function registerTranslations()
     {
-        $langPath = base_path('resources/lang/modules/laccbook');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'laccbook');
+        $langPath = base_path( 'resources/lang/modules/laccbook' );
+        if ( is_dir( $langPath ) ) {
+            $this->loadTranslationsFrom( $langPath, 'laccbook' );
         } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../resources/lang', 'laccbook');
+            $this->loadTranslationsFrom( __DIR__ . '/../resources/lang', 'laccbook' );
         }
     }
 
@@ -93,16 +89,14 @@ class LaccBookServiceProvider extends ServiceProvider
      */
     public function publishMigrationsAndSeeders()
     {
-        $sourcePathMigrations = __DIR__.'/../database/migrations';
-        $sourcePathSeeders    = __DIR__.'/../database/seeders';
-
-        $this->publishes([
-            $sourcePathMigrations => database_path('migrations')
-        ], 'migrations');
-
-        $this->publishes([
-            $sourcePathSeeders => database_path('seeds')
-        ], 'seeders');
+        $sourcePathMigrations = __DIR__ . '/../database/migrations';
+        $sourcePathSeeders    = __DIR__ . '/../database/seeders';
+        $this->publishes( [
+          $sourcePathMigrations => database_path( 'migrations' ),
+        ], 'migrations' );
+        $this->publishes( [
+          $sourcePathSeeders => database_path( 'seeds' ),
+        ], 'seeders' );
     }
 
     /**
