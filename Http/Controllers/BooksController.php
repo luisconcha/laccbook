@@ -10,6 +10,13 @@ use LaccBook\Services\BookService;
 use LaccBook\Services\CategoryService;
 use LaccUser\Services\UserService;
 
+use LaccUser\Annotations\Mapping as Permission;
+
+/**
+ * Class Bookscontroller
+ * @package LaccBook\Http\Controllers
+ * @Permission\Controller(name="books-admin", description="Book administration")
+ */
 class Bookscontroller extends Controller
 {
     private $with = [ 'author' ];
@@ -61,6 +68,9 @@ class Bookscontroller extends Controller
     }
 
     /**
+     * @param Request $request
+     * @Permission\Action(name="list-books", description="View book list")
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index( Request $request )
@@ -72,9 +82,8 @@ class Bookscontroller extends Controller
     }
 
     /**
-     * show the form for creating a new resource.
-     *
-     * @return \illuminate\http\response
+     * @Permission\Action(name="store-books", description="Store books")
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -87,6 +96,7 @@ class Bookscontroller extends Controller
 
     /**
      * @param BookRequest $request
+     * @Permission\Action(name="store-books", description="Store books")
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -103,6 +113,7 @@ class Bookscontroller extends Controller
 
     /**
      * @param $id
+     * @Permission\Action(name="view-book-detail", description="View book detail")
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -115,6 +126,7 @@ class Bookscontroller extends Controller
 
     /**
      * @param $id
+     * @Permission\Action(name="update-books", description="Update books")
      *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
@@ -124,13 +136,14 @@ class Bookscontroller extends Controller
         $users = $this->userRepository->lists( 'name', 'id' );
         $this->categoryRepository->withTrashed();
         $categories = $this->categoryRepository->listsWithMutators( 'name', 'id' );
-        
+
         return view( 'laccbook::books.edit', compact( 'book', 'users', 'categories' ) );
     }
 
     /**
-     * @param \LaccBook\Http\Requests\BookRequest $request
-     * @param                                     $id
+     * @param BookRequest $request
+     * @param             $id
+     * @Permission\Action(name="update-books", description="Update books")
      *
      * @return \Illuminate\Http\RedirectResponse
      */
@@ -150,6 +163,7 @@ class Bookscontroller extends Controller
     /**
      * @param         $id
      * @param Request $request
+     * @Permission\Action(name="destroy-book", description="Destroy book data")
      *
      * @return \Illuminate\Http\RedirectResponse
      */
